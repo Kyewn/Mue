@@ -250,13 +250,19 @@ document.getElementById("skipBtn").addEventListener('click', function() {
     });
 });
 */
-    audioPlayer.addEventListener('timeupdate', function() {
-        var currentTime = this.currentTime;
-        var duration = this.duration;
-        var songPercent = currentTime/duration * 100 + "%";
-    
-        trackProgress.style.width = songPercent;
-    });
+audioPlayer.addEventListener('timeupdate', function() {
+    var currentTime = this.currentTime;
+    var duration = this.duration;
+    var songPercent = currentTime/duration * 100 + "%";
+    trackProgress.style.width = songPercent;
+});
+
+trackBar.addEventListener('click', function (e) {
+    var x = e.pageX - this.offsetLeft - audioMenu.offsetLeft;
+    var clickedPos = x / trackBar.offsetWidth;
+    trackProgress.style.width = (clickedPos * 100) + "%";
+    audioPlayer.currentTime = audioPlayer.duration * clickedPos;
+});
 
 while(songQueue == []) {
     var emptyMsgSpan = document.createElement("div");
