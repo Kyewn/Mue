@@ -283,18 +283,28 @@ body {
     background-size: 30%;
 }
 
-.skipText {
+.deleteIcon:hover::before {
+    content: 'SKIP';
+    font-weight: bolder;
     position: absolute;
-    top: 25%;
-    left: 25%;
-    font-weight: bold;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 20px;
+    color: rgb(47, 34, 82);
     opacity: 0;
-    transition: opacity 100ms ease-in;
-    transition-delay: 1ms;
+    animation: skipAppear .2s forwards;
 }
 
-.deleteIcon:hover .skipText {
-    opacity: 1;
+.songBlock:first-child .deleteIcon:hover::before {
+    content: 'SKIP';
+    font-weight: 400;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 20px;
+    color: white;
+    opacity: 0;
+    animation: skipAppear .2s forwards;
 }
 
 #fileBtn {
@@ -360,6 +370,16 @@ body {
 
     100% {
         margin-top: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes skipAppear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
         opacity: 1;
     }
 }
